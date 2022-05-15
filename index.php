@@ -2,8 +2,10 @@
 
 include('Config/db.php');
 
-$response = $db->query('SELECT * FROM games');
-
+$response = "SELECT * FROM games";
+$stmt = $db->prepare($response);
+$stmt->execute();
+$games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!doctype html>
@@ -30,47 +32,34 @@ $response = $db->query('SELECT * FROM games');
         </li>
     </ul>
 
+   
+    <?php foreach($games as $c) : ?>
     <div class="container">
         <h1 class="">Liste des jeux</h1>
-        
-        <table class="table table-dark table-striped">
-            <thead>
-                <tr>
-                    <th>Price</th>
-                    <th>Category</th>
-                    <th>genre</th>
-                    <th>editor</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($data = $response->fetch()) : ?>
-                    <tr>
-                        <td><?php echo $data['price']; ?></td>
-                        <td><?php echo $data['device']; ?></td>
-                        <td><?php echo $data['genre']; ?></td>
-                        <td><?php echo $data['editor']; ?></td>
-
-                        <td><a href="show.php?id=<?php echo $data['id']; ?>" class="btn">Voir</a></td>
-                        <td><a href="update.php?id=<?php echo $data['id']; ?>" class="btn">Modifier</a></td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h3 class="card-title"><?= $c['price']; ?></h3>
+                <p class="card-text"><?= $c['genre']; ?></p>
+                <p class="card-text"><?= $c['editor']; ?></p>
+                <p class="card-text"><?= $c['device']; ?></p>
+                <a href="show.php?id=<?= $c['id']; ?>" class="btn-light">Voir</a>
+                <a href="update.php?id=<?= $c['id']; ?>" class="btn-light">Modifier</a>
+            </div>
+        </div>
     </div>
+    <?php endforeach; ?>
 
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Liste des jeux</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Ajout d'un jeu</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Panier</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            </ul>
+            <p class="text-center text-muted">© 2022 Games</p>
+        </footer>
 
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Liste des jeux</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Ajout d'un jeu</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Panier</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-        </ul>
-        <p class="text-center text-muted">© 2022 Games</p>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
-</html <?php $response->closeCursor(); ?>
+</html>
