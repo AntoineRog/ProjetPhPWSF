@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le : jeu. 05 mai 2022 à 17:06
--- Version du serveur :  5.7.34
--- Version de PHP : 8.0.8
+-- Host: localhost:3306
+-- Generation Time: May 16, 2022 at 04:55 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,17 +19,19 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `Projet_PHP`
+-- Database: `games`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Games`
+-- Table structure for table `games`
 --
 
-CREATE TABLE `Games` (
+CREATE TABLE `games` (
   `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` text NOT NULL,
   `price` int(11) NOT NULL,
   `device` varchar(255) NOT NULL,
   `genre` varchar(255) NOT NULL,
@@ -36,24 +39,32 @@ CREATE TABLE `Games` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Index pour les tables déchargées
+-- Dumping data for table `games`
+--
+
+INSERT INTO `games` (`id`, `name`, `description`, `price`, `device`, `genre`, `editor`) VALUES
+(1, 'Trackmania', 'Trackmania est un jeu de voiture qui a des bases très classique d\'un jeu de course mais qui possède des mécaniques de jeux inattendues. Vous ne pourrez jamais atteindre le temps le plus optimisé ce qui rend la compétition sur ce jeu intéressante. De plus, elle peut être diffusée à tout public car les bases du jeu sont simple à comprendre. Il y a un départ, une arrivée et des checkpoints.', 36, 'Desktop', 'Racing', 'Ubisoft'),
+(2, 'Archero', 'Archero est un jeu mobile qui se joue avec la vue du dessus de votre héros. Vous aurez de multiples châteaux à parcourir par étages. Votre but, finir tous les châteaux rempli de monstres les plus forts. Améliorez votre équipement afin de les vaincre.', 1, 'Phone', 'floors levels', 'gorilla');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `Games`
+-- Indexes for table `games`
 --
-ALTER TABLE `Games`
+ALTER TABLE `games`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `Games`
+-- AUTO_INCREMENT for table `games`
 --
-ALTER TABLE `Games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `games`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

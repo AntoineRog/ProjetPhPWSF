@@ -20,46 +20,30 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <ul class="nav justify-content-end navbar navbar-dark bg-dark">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Liste des jeux</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Ajouter un jeu</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled">Panier</a>
-        </li>
-    </ul>
+    <?php include('Components/Header.php'); ?>
 
-   
-    <?php foreach($games as $c) : ?>
-    <div class="container">
-        <h1 class="">Liste des jeux</h1>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h3 class="card-title"><?= $c['price']; ?></h3>
-                <p class="card-text"><?= $c['genre']; ?></p>
-                <p class="card-text"><?= $c['editor']; ?></p>
-                <p class="card-text"><?= $c['device']; ?></p>
-                <a href="show.php?id=<?= $c['id']; ?>" class="btn-light">Voir</a>
-                <a href="update.php?id=<?= $c['id']; ?>" class="btn-light">Modifier</a>
+        <div class="container">
+            <h1 class="">Liste des jeux</h1>
+            <?php foreach ($games as $c) : ?>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h3 class="card-title"><?= $c['name']; ?></h3>
+                    <h4 class="card-text"><?= $c['price']; ?></h4>
+                    <p class="card-text"><?= $c['genre']; ?></p>
+                    <p class="card-text"><?= $c['editor']; ?></p>
+                    <p class="card-text"><?= $c['device']; ?></p>
+                    <a href="show.php?id=<?= $c['id']; ?>" class="btn-light">Voir</a>
+                    <a href="update.php?id=<?= $c['id']; ?>" class="btn-light">Modifier</a>
+                </div>
             </div>
+            <?php endforeach; ?>
         </div>
-    </div>
-    <?php endforeach; ?>
 
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Liste des jeux</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Ajout d'un jeu</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Panier</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-            </ul>
-            <p class="text-center text-muted">© 2022 Games</p>
-        </footer>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <?php include('Components/Footer.php'); ?>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>
