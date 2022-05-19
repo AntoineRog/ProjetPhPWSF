@@ -24,11 +24,12 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="container">
             <h1 class="">Liste des jeux</h1>
+            <div class="d-flex flex-wrap"> 
             <?php foreach ($games as $c) : ?>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
+            <div class="card mx-2 mb-2" style="width: 18rem;">
+                <div class="card-body ">
                     <h3 class="card-title"><?= $c['name']; ?></h3>
-                    <h4 class="card-text"><?= $c['price']; ?></h4>
+                    <h4 class="card-text"><?= $c['price']; ?>€</h4>
                     <p class="card-text"><?= $c['genre']; ?></p>
                     <p class="card-text"><?= $c['editor']; ?></p>
                     <p class="card-text"><?= $c['device']; ?></p>
@@ -37,6 +38,7 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
             <?php endforeach; ?>
+            </div>
         </div>
 
 

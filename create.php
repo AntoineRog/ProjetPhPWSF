@@ -1,3 +1,32 @@
+<?php
+
+if (
+    $_POST &&
+    isset($_POST['name']) && $_POST['name'] !== '' &&
+    isset($_POST['description']) && $_POST['description'] !== '' &&
+    isset($_POST['price']) && $_POST['price'] !== '' && is_numeric($_POST['price']) &&
+    isset($_POST['device']) && $_POST['device'] !== '' &&
+    isset($_POST['genre']) && $_POST['genre'] !== '' &&
+    isset($_POST['editor']) && $_POST['editor'] !== ''
+) {
+    include('Config/db.php');
+
+    $req = $db->prepare('INSERT INTO games(name, description, price, device, genre, editor) VALUES (:name, :description, :price, :device, :genre, :editor)');
+
+    $req->execute([
+        'name' => $_POST['name'],
+        'description' => $_POST['description'],
+        'price' => $_POST['price'],
+        'device' => $_POST['device'],
+        'genre' => $_POST['genre'],
+        'editor' => $_POST['editor']
+    ]);
+
+    header('Location: index.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +41,33 @@
 <body>
     <?php include('Components/Header.php'); ?>
 
+    <form class="container" style=" width: 25%;" method="POST">
+        <div class="mb-2">
+            <label class="form-label">Nom du Jeu</label>
+            <input type="text" name="name" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Description</label>
+            <input type="text" name="description" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Prix</label>
+            <input type="number" name="price" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Device</label>
+            <input type="text" name="device" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Genre</label>
+            <input type="text" name="genre" class="form-control">
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Editor</label>
+            <input type="text" name="editor" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
     <?php include('Components/Footer.php'); ?>
 </body>
