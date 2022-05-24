@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 24, 2022 at 06:59 PM
+-- Generation Time: May 24, 2022 at 09:25 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -52,8 +52,8 @@ INSERT INTO `editor` (`id`, `name`, `country`, `city`, `description`) VALUES
 
 CREATE TABLE `games` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `description` text NOT NULL,
+  `name_game` varchar(50) NOT NULL,
+  `description_game` text NOT NULL,
   `price` int(11) NOT NULL,
   `device` varchar(255) NOT NULL,
   `genre` varchar(255) NOT NULL,
@@ -64,9 +64,10 @@ CREATE TABLE `games` (
 -- Dumping data for table `games`
 --
 
-INSERT INTO `games` (`id`, `name`, `description`, `price`, `device`, `genre`, `editor`) VALUES
+INSERT INTO `games` (`id`, `name_game`, `description_game`, `price`, `device`, `genre`, `editor`) VALUES
 (1, 'Trackmania', 'Trackmania est un jeu de voiture qui a des bases très classique d\'un jeu de course mais qui possède des mécaniques de jeux inattendues. Vous ne pourrez jamais atteindre le temps le plus optimisé ce qui rend la compétition sur ce jeu intéressante. De plus, elle peut être diffusée à tout public car les bases du jeu sont simple à comprendre. Il y a un départ, une arrivée et des checkpoints.', 36, 'Desktop', 'Racing', 'Ubisoft'),
-(2, 'Archero', 'Archero est un jeu mobile qui se joue avec la vue du dessus de votre héros. Vous aurez de multiples châteaux à parcourir par étages. Votre but, finir tous les châteaux rempli de monstres les plus forts. Améliorez votre équipement afin de les vaincre.', 1, 'Phone', 'floors levels', 'Gorilla');
+(2, 'Archero', 'Archero est un jeu mobile qui se joue avec la vue du dessus de votre héros. Vous aurez de multiples châteaux à parcourir par étages. Votre but, finir tous les châteaux rempli de monstres les plus forts. Améliorez votre équipement afin de les vaincre.', 1, 'Phone', 'floors levels', 'Gorilla'),
+(3, 'forza', 'vroum vroum tchao', 150, 'mon gros bide', 'la vitesse', 'Ubisoft');
 
 --
 -- Indexes for dumped tables
@@ -98,7 +99,7 @@ ALTER TABLE `editor`
 -- AUTO_INCREMENT for table `games`
 --
 ALTER TABLE `games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
