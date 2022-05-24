@@ -8,14 +8,10 @@ if ($data === false) {
     header('Location: Template/error404.php');
     exit;
 }
-$response = "SELECT * FROM games WHERE name=" . $_GET['editor'];
-$stmt = $db->prepare($response);
-$stmt->execute();
-$games = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
+
+$responseTable = $db->query('SELECT name_game, price, device, genre, description_game FROM games AS G LEFT JOIN editor AS E ON E.name = G.editor WHERE id='. $_GET['id']);
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -95,15 +91,15 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tr>
         </thead>
         <tbody class="table-group-divider">
-        <?php foreach ($games as $c) : ?>
+        <?php while($games = $responseTable->fetch()) : ?>
             <tr>
-                <td><?= $c['name']; ?></td>
-                <td><?= $c['price']; ?></td>
-                <td><?= $c['genre']; ?></td>
-                <td><?= $c['device']; ?></td>
-                <td><?= $c['description']; ?></td>
+                <td><?php echo $games ['name_game']; ?></td>
+                <td><?php echo $games['price']; ?></td>
+                <td><?php echo $games['genre']; ?></td>
+                <td><?php echo $games['device']; ?></td>
+                <td><?php echo $games['description_game']; ?></td>
             </tr>
-            <?php endforeach; ?>
+            <?php endwhile; ?>
         </tbody>
     </table>
 

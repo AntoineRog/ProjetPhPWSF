@@ -35,7 +35,7 @@ if ($data === false) {
             <div class="col">
                 <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
                     <div class="d-flex justify-content-center text-white text-shadow-1">
-                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><?= $data['name']; ?></h2>
+                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><?= $data['name_game']; ?></h2>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@ if ($data === false) {
                     <h4><?= $data['genre']; ?></h4>
                     <h4><?= $data['editor']; ?></h4>
                     <h4><?= $data['device']; ?></h4>
-                    <p><?= $data['description']; ?></p>
+                    <p><?= $data['description_game']; ?></p>
                     <a href="update.php?id=<?= $data['id']; ?>" class="btn btn-primary">
                         Modifier
                     </a>
