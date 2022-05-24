@@ -8,5 +8,10 @@
         <li class="nav-item">
             <a class="nav-link" href="create.php">Ajouter un jeu</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="createEditor.php">Ajouter un Editeur</a>
+        </li>
+
+
 
     </ul>

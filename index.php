@@ -2,11 +2,6 @@
 
 include('Config/db.php');
 
-$response = "SELECT * FROM games";
-$stmt = $db->prepare($response);
-$stmt->execute();
-$games = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 $allgames = $db->query('SELECT * FROM games ORDER BY id DESC');
 if (isset($_GET['search']) and !empty($_GET['search'])) {
     $recherche = htmlspecialchars($_GET['search']);
