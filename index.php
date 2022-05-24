@@ -5,7 +5,7 @@ include('Config/db.php');
 $allgames = $db->query('SELECT * FROM games ORDER BY id DESC');
 if (isset($_GET['search']) and !empty($_GET['search'])) {
     $recherche = htmlspecialchars($_GET['search']);
-    $allgames = $db->query('SELECT * FROM games WHERE name LIKE "%' . $recherche . '%" ORDER BY id DESC');
+    $allgames = $db->query('SELECT * FROM games WHERE name_game LIKE "%' . $recherche . '%" ORDER BY id DESC');
 }
 ?>
 

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 24, 2022 at 09:25 PM
--- Server version: 5.7.24
--- PHP Version: 7.4.1
+-- Hôte : localhost:8889
+-- Généré le : mar. 24 mai 2022 à 21:43
+-- Version du serveur :  5.7.34
+-- Version de PHP : 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,17 +18,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `games`
+-- Base de données : `games`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `editor`
+-- Structure de la table `editor`
 --
 
 CREATE TABLE `editor` (
-  `id` int(11) NOT NULL,
+  `id_editor` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `country` varchar(20) NOT NULL,
   `city` varchar(20) NOT NULL,
@@ -37,17 +36,17 @@ CREATE TABLE `editor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `editor`
+-- Déchargement des données de la table `editor`
 --
 
-INSERT INTO `editor` (`id`, `name`, `country`, `city`, `description`) VALUES
+INSERT INTO `editor` (`id_editor`, `name`, `country`, `city`, `description`) VALUES
 (1, 'Ubisoft', 'France', 'Paris', 'Ubisoft c\'est vraiment super !'),
 (2, 'Gorilla', 'Allemagne', 'Berlin', 'Créateurs du jeu archero ce sont des génies.');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `games`
+-- Structure de la table `games`
 --
 
 CREATE TABLE `games` (
@@ -61,7 +60,7 @@ CREATE TABLE `games` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `games`
+-- Déchargement des données de la table `games`
 --
 
 INSERT INTO `games` (`id`, `name_game`, `description_game`, `price`, `device`, `genre`, `editor`) VALUES
@@ -70,33 +69,33 @@ INSERT INTO `games` (`id`, `name_game`, `description_game`, `price`, `device`, `
 (3, 'forza', 'vroum vroum tchao', 150, 'mon gros bide', 'la vitesse', 'Ubisoft');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `editor`
+-- Index pour la table `editor`
 --
 ALTER TABLE `editor`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_editor`);
 
 --
--- Indexes for table `games`
+-- Index pour la table `games`
 --
 ALTER TABLE `games`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `editor`
+-- AUTO_INCREMENT pour la table `editor`
 --
 ALTER TABLE `editor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_editor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `games`
+-- AUTO_INCREMENT pour la table `games`
 --
 ALTER TABLE `games`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;

@@ -46,7 +46,7 @@ $responseTable = $db->query('SELECT name_game, price, device, genre, description
                     <h4><?= $data['country']; ?></h4>
                     <h4><?= $data['city']; ?></h4>
                     <p><?= $data['description']; ?></p>
-                    <a href="update.php?id=<?= $data['id_editor']; ?>" class="btn btn-primary">
+                    <a href="updateEditor.php?id=<?= $data['id_editor']; ?>" class="btn btn-primary">
                         Modifier
                     </a>
                     <!-- Button trigger modal -->
@@ -59,15 +59,15 @@ $responseTable = $db->query('SELECT name_game, price, device, genre, description
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Suppression <?php echo $data['name_game'] ?></h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Suppression <?php echo $data['name'] ?></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Êtes-vous sure de vouloir suprrimer le jeu: <?php echo $data['name'] ?>
+                                    Êtes-vous sure de vouloir suprrimer l'editeur: <?php echo $data['name'] ?>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <a href="delete.php?id=<?= $data['id']; ?>" class="btn btn-primary">
+                                    <a href="deleteEditor.php?id=<?= $data['id_editor']; ?>" class="btn btn-primary">
                                         Supprimer
                                     </a>
                                 </div>
@@ -102,7 +102,6 @@ $responseTable = $db->query('SELECT name_game, price, device, genre, description
             <?php endwhile; ?>
         </tbody>
     </table>
-
 
     <?php include('Components/Footer.php'); ?>
 
