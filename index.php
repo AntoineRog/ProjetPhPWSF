@@ -6,6 +6,12 @@ $response = "SELECT * FROM games";
 $stmt = $db->prepare($response);
 $stmt->execute();
 $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$allgames = $db->query('SELECT * FROM games ORDER BY id DESC');
+if (isset($_GET['search']) and !empty($_GET['search'])) {
+    $recherche = htmlspecialchars($_GET['search']);
+    $allgames = $db->query('SELECT * FROM games WHERE name LIKE "%' . $recherche . '%" ORDER BY id DESC');
+}
 ?>
 
 <!doctype html>
@@ -22,24 +28,36 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <?php include('Components/Header.php'); ?>
 
-        <div class="container">
-            <h1 class="">Liste des jeux</h1>
-            <div class="d-flex flex-wrap"> 
-            <?php foreach ($games as $c) : ?>
-            <div class="card mx-2 mb-2" style="width: 18rem;">
-                <div class="card-body ">
-                    <h3 class="card-title"><?= $c['name']; ?></h3>
-                    <h4 class="card-text"><?= $c['price']; ?>€</h4>
-                    <p class="card-text"><?= $c['genre']; ?></p>
-                    <p class="card-text"><?= $c['editor']; ?></p>
-                    <p class="card-text"><?= $c['device']; ?></p>
-                    <a href="show.php?id=<?= $c['id']; ?>" class="btn-light">Voir</a>
-                    <a href="update.php?id=<?= $c['id']; ?>" class="btn-light">Modifier</a>
-                </div>
-            </div>
-            <?php endforeach; ?>
-            </div>
+    <div class="container">
+        <h1 class="">Liste des jeux</h1>
+        <h4 class="mt-5">Rechercher le nom du jeux</h4>
+        <form method="GET" class="mb-5">
+            <input type="search" name="search" placeholder="rechercher">
+            <input type="submit" name="chercher" value="Chercher">
+        </form>
+        <div class="d-flex flex-wrap">
+            <?php if ($allgames->rowCount() > 0) {
+                foreach ($allgames as $c) : ?>
+                    <div class="card mx-2 mb-2" style="width: 18rem;">
+                        <div class="card-body ">
+                            <h3 class="card-title"><?= $c['name']; ?></h3>
+                            <h4 class="card-text"><?= $c['price']; ?>€</h4>
+                            <p class="card-text"><?= $c['genre']; ?></p>
+                            <p class="card-text"><?= $c['editor']; ?></p>
+                            <p class="card-text"><?= $c['device']; ?></p>
+                            <a href="show.php?id=<?= $c['id']; ?>" class="btn-light">Voir</a>
+                            <a href="update.php?id=<?= $c['id']; ?>" class="btn-light">Modifier</a>
+                        </div>
+                    </div>
+                <?php endforeach;
+            } else {
+                ?>
+                <p>Aucun jeux trouvé</p>
+            <?php
+            }
+            ?>
         </div>
+    </div>
 
 
     <?php include('Components/Footer.php'); ?>
