@@ -4,18 +4,18 @@ include('Config/db.php');
 
 if (
     $_POST &&
-    isset($_POST['name']) && $_POST['name'] !== '' &&
-    isset($_POST['description']) && $_POST['description'] !== '' &&
+    isset($_POST['name_game']) && $_POST['name_game'] !== '' &&
+    isset($_POST['description_game']) && $_POST['description_game'] !== '' &&
     isset($_POST['price']) && $_POST['price'] !== '' && is_numeric($_POST['price']) &&
     isset($_POST['device']) && $_POST['device'] !== '' &&
     isset($_POST['genre']) && $_POST['genre'] !== '' &&
     isset($_POST['editor']) && $_POST['editor'] !== ''
 ) {
-    $req = $db->prepare('UPDATE games SET name =:name, description = :description, price = :price, device = :device, genre = :genre, editor = :editor WHERE id='  . $_GET['id']);
+    $req = $db->prepare('UPDATE games SET name_game =:name_game, description_game = :description_game, price = :price, device = :device, genre = :genre, editor = :editor WHERE id='  . $_GET['id']);
 
     $req->execute([
-        'name' => $_POST['name'],
-        'description' => $_POST['description'],
+        'name_game' => $_POST['name_game'],
+        'description_game' => $_POST['description_game'],
         'price' => $_POST['price'],
         'device' => $_POST['device'],
         'genre' => $_POST['genre'],
@@ -48,11 +48,11 @@ if (
     <form class="container" style=" width: 25%;" method="POST">
         <div class="mb-2">
             <label class="form-label">Nom du Jeu</label>
-            <input type="text" name="name" class="form-control" value="<?php echo $data['name']; ?>">
+            <input type="text" name="name" class="form-control" value="<?php echo $data['name_game']; ?>">
         </div>
         <div class=" mb-2">
             <label class="form-label">Description</label>
-            <input type="text" name="description" class="form-control" value="<?php echo $data['description']; ?>">
+            <input type="text" name="description" class="form-control" value="<?php echo $data['description_game']; ?>">
         </div>
         <div class="mb-2">
             <label class="form-label">Prix</label>

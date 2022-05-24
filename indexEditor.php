@@ -33,8 +33,8 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h4 class="card-text"><?= $c['country']; ?></h4>
                         <p class="card-text"><?= $c['city']; ?></p>
                         <p class="card-text"><?= $c['description']; ?></p>
-                        <a href="showEditor.php?id=<?= $c['id']; ?>" class="btn-light">Voir</a>
-                        <a href="update.php?id=<?= $c['id']; ?>" class="btn-light">Modifier</a>
+                        <a href="showEditor.php?id=<?= $c['id_editor']; ?>" class="btn-light">Voir</a>
+                        <a href="updateEditor.php?id=<?= $c['id_editor']; ?>" class="btn-light">Modifier</a>
                     </div>
                 </div>
             <?php endforeach; ?>

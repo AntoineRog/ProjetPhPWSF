@@ -2,14 +2,14 @@
 
 include('Config/db.php');
 
-$response = $db->query('SELECT * FROM editor WHERE id=' . $_GET['id']);
+$response = $db->query('SELECT * FROM editor WHERE id_editor=' . $_GET['id']);
 $data = $response->fetch();
 if ($data === false) {
     header('Location: Template/error404.php');
     exit;
 }
 
-$responseTable = $db->query('SELECT name_game, price, device, genre, description_game FROM games AS G LEFT JOIN editor AS E ON E.name = G.editor WHERE id='. $_GET['id']);
+$responseTable = $db->query('SELECT name_game, price, device, genre, description_game FROM games AS G LEFT JOIN editor AS E ON E.name = G.editor WHERE id_editor=' . $_GET['id']);
 
 ?>
 
@@ -46,7 +46,7 @@ $responseTable = $db->query('SELECT name_game, price, device, genre, description
                     <h4><?= $data['country']; ?></h4>
                     <h4><?= $data['city']; ?></h4>
                     <p><?= $data['description']; ?></p>
-                    <a href="update.php?id=<?= $data['id']; ?>" class="btn btn-primary">
+                    <a href="update.php?id=<?= $data['id_editor']; ?>" class="btn btn-primary">
                         Modifier
                     </a>
                     <!-- Button trigger modal -->
@@ -59,7 +59,7 @@ $responseTable = $db->query('SELECT name_game, price, device, genre, description
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Suppression <?php echo $data['name'] ?></h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Suppression <?php echo $data['name_game'] ?></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -91,14 +91,14 @@ $responseTable = $db->query('SELECT name_game, price, device, genre, description
             </tr>
         </thead>
         <tbody class="table-group-divider">
-        <?php while($games = $responseTable->fetch()) : ?>
-            <tr>
-                <td><?php echo $games ['name_game']; ?></td>
-                <td><?php echo $games['price']; ?></td>
-                <td><?php echo $games['genre']; ?></td>
-                <td><?php echo $games['device']; ?></td>
-                <td><?php echo $games['description_game']; ?></td>
-            </tr>
+            <?php while ($games = $responseTable->fetch()) : ?>
+                <tr>
+                    <td><?php echo $games['name_game']; ?></td>
+                    <td><?php echo $games['price']; ?></td>
+                    <td><?php echo $games['genre']; ?></td>
+                    <td><?php echo $games['device']; ?></td>
+                    <td><?php echo $games['description_game']; ?></td>
+                </tr>
             <?php endwhile; ?>
         </tbody>
     </table>
