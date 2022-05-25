@@ -7,6 +7,18 @@ if (isset($_GET['search']) and !empty($_GET['search'])) {
     $recherche = htmlspecialchars($_GET['search']);
     $allgames = $db->query('SELECT * FROM games WHERE name_game LIKE "%' . $recherche . '%" ORDER BY id ASC');
 }
+if (isset($_GET['search_editor']) and !empty($_GET['search_editor'])) {
+    $recherche = htmlspecialchars($_GET['search_editor']);
+    $allgames = $db->query('SELECT * FROM games WHERE editor LIKE "%' . $recherche . '%" ORDER BY id ASC');
+}
+if (isset($_GET['search_genre']) and !empty($_GET['search_genre'])) {
+    $recherche = htmlspecialchars($_GET['search_genre']);
+    $allgames = $db->query('SELECT * FROM games WHERE genre LIKE "%' . $recherche . '%" ORDER BY id ASC');
+}
+if (isset($_GET['search_device']) and !empty($_GET['search_device'])) {
+    $recherche = htmlspecialchars($_GET['search_device']);
+    $allgames = $db->query('SELECT * FROM games WHERE device LIKE "%' . $recherche . '%" ORDER BY id ASC');
+}
 ?>
 
 <!doctype html>
@@ -25,10 +37,30 @@ if (isset($_GET['search']) and !empty($_GET['search'])) {
 
     <div class="container">
         <h1 class="">Liste des jeux</h1>
-        <h4 class="mt-5">Rechercher le nom du jeux</h4>
-        <form method="GET" class="mb-5">
-            <input type="search" name="search" placeholder="rechercher">
-            <input type="submit" name="chercher" value="Chercher">
+        <div class="d-flex">
+            <form method="GET" class="mb-5 mx-2">
+                <h6 class="mt-5">Rechercher le nom du jeux</h6>
+                <input type="search" name="search" placeholder="rechercher">
+                <input type="submit" name="chercher" value="Chercher">
+            </form>
+            <form method="GET" class="mb-5 mx-2">
+                <h6 class="mt-5">Rechercher le nom de l'éditeur</h6>
+                <input type="search" name="search_editor" placeholder="rechercher">
+                <input type="submit" name="chercher" value="Chercher">
+            </form>
+            <form method="GET" class="mb-5 mx-2">
+                <h6 class="mt-5">Rechercher le genre</h6>
+                <input type="search" name="search_genre" placeholder="rechercher">
+                <input type="submit" name="chercher" value="Chercher">
+            </form>
+            <form method="GET" class="mb-5 mx-2">
+                <h6 class="mt-5">Rechercher le device</h6>
+                <input type="search" name="search_device" placeholder="rechercher">
+                <input type="submit" name="chercher" value="Chercher">
+            </form>
+        </div>
+        <form>
+            <input type="submit" value="Annuler">
         </form>
         <div class="d-flex flex-wrap">
             <?php if ($allgames->rowCount() > 0) {
